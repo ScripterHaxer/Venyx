@@ -1,0 +1,49 @@
+ -- Creating Gui
+
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Gui = Library.CreateLib("PSurvival Games Ultimate", "Ocean")
+
+    -- Adding tabs
+
+    local Main = Gui:NewTab("Main")
+    local MainPoke = Main:NewSection("Main Stuff")
+
+    local Settings = Gui:NewTab("Settings")
+    local SettingsSection = Settings:NewSection("Settings")
+    local Scripts = Settings:NewSection("Good to use")
+
+    local Credits = Gui:NewTab("Credits")
+    local CreditsSection = Credits:NewSection("Credits: Pinkie Scripter")
+
+    MainPoke:NewButton("Infinite Stamina", "Good speed", function()
+        local module = require(game:GetService("Players").LocalPlayer.PlayerScripts.LocalManager.Util)
+        module.RemoveStamina = function() end
+    end)
+
+
+   -- Settings section
+
+SettingsSection:NewKeybind("Toggle Ui", "Toggles the ui on and off when key is pressed", Enum.KeyCode.J, function()
+Library:ToggleUI()
+end)
+
+Scripts:NewButton("Infinite Yield", "Admin script for stuff.", function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+Scripts:NewButton("Fullbright", "Makes it brighter", function()
+if brightLoop then
+brightLoop:Disconnect()
+end
+local function brightFunc()
+game:GetService("Lighting").Brightness = 2
+game:GetService("Lighting").ClockTime = 14
+game:GetService("Lighting").FogEnd = 100000
+game:GetService("Lighting").GlobalShadows = false
+game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+end
+
+brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+end)
+
+
