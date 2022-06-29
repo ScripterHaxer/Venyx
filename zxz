@@ -1,0 +1,537 @@
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/vozoid/ui-libraries/main/drawing/void/source.lua"))()
+
+local watermark = library:Watermark("watermark | 60 fps | v4.20 | dev")
+-- watermark:Set("Watermark Set")
+watermark:Hide() -- toggles watermark
+
+local main = library:Load{
+    Name = "Brick Bronze Gui SImple",
+    SizeX = 400,
+    SizeY = 350,
+    Theme = "Midnight",
+    Extension = "json", -- config file extension
+    Folder = "BrickBronze" -- config folder name
+}
+
+-- library.Extension = "txt" (config file extension)
+-- library.Folder = "config folder name"
+
+local tab = main:Tab("Tab")
+
+local section = tab:Section{
+    Name = "Main stuff",
+    Side = "Left"
+}
+
+--label:Set("Label Set")
+
+
+Get = game:GetService("ReplicatedStorage").GET
+function GetMainData()
+    for i, v in pairs(debug.getregistry()) do
+        if typeof(v) == "function" then
+            for a, b in pairs(debug.getupvalues(v)) do
+                if typeof(b) == "table" and rawget(b, "Fishing") then
+                    return b
+                end
+            end
+        end
+    end
+end
+Data = GetMainData()
+AuthKey = debug.getupvalue(Data["Network"]["getAuthKey"], 1)
+function ToggleSubmarine(Val)
+    local Sub = true
+    if LPlr.Character ~= nil and LPlr.Character:FindFirstChild("UMVModel") then
+        Sub = false
+    end
+    if Val ~= nil then
+        Sub = Val
+    end
+    Get:InvokeServer(AuthKey, "ToggleSubmarine", Sub)
+end
+function GoInvisible()
+    if LPlr.Character == nil or LPlr.Character:FindFirstChild("UMVModel") and not LPlr.Character.UMVModel:FindFirstChild("Root") then
+        return
+    end
+    ToggleSubmarine(true)
+    repeat
+        wait()
+    until LPlr.Character:FindFirstChild("UMVModel")
+    LPlr.Character.UMVModel:FindFirstChild("Root"):remove()
+end
+function GoVisible()
+    ToggleSubmarine(false)
+end
+local SF = {}
+SF["Fish"] = Data["Fishing"]["Fish"]
+SF["Fly"] = Data["Menu"]["map"]["fly"]
+local SkipChat = false
+local OldWait;
+OldWait = hookfunction(Data["NPCChat"]["AdvanceSignal"]["wait"], function(...)
+if SkipChat then
+return
+end
+OldWait(...)
+end)
+local Old;
+Old = hookfunction(Data["NPCChat"]["say"], function(...)
+    local Args = {...}
+if SkipChat then
+for i = 3, #Args do
+if typeof(Args[i]) == "string" then
+Args[i] = "."
+end
+end
+end
+    return Old(unpack(Args))
+end)
+
+
+
+section:Button{
+    Name = "Absol & Eevee Giver",
+    Callback  = function()
+        local _p = nil
+        for _, v in pairs(getgc(true)) do
+           if typeof(v) == "table" then
+               if rawget(v, "PlayerData") then
+                   _p = v
+                   break
+               end
+           end
+        end
+        
+        print(_p.PlayerData:completeEvent("GetAbsol"))
+        print(_p.PlayerData:completeEvent("Eevee2Awarded"))
+    end
+}
+
+local label = section:Label("Want skip-chat?")
+local label = section:Label("Make ticket and tell me")
+
+section:Button{
+    Name = "Heal Pokemons",
+    Callback  = function()
+        Get:InvokeServer(AuthKey, "PDS", "getPartyPokeBalls")
+    end
+}
+
+local seperator = section:Separator("Separator")
+--separator:Set("Separator Set")
+
+section:Button{
+    Name = "Tix",
+    Callback  = function()
+    Print("Not working atm")
+    end
+}
+
+section:Button{
+    Name = "Fish",
+    Callback  = function()
+        print("Not working atm")
+    end
+}
+
+local seperator = section:Separator("Separator")
+--separator:Set("Separator Set")
+
+local toggle4 = section:Toggle{
+    Name = "Reveal Rocks",
+    Flag = "Reveal Rocks",
+    --Default = true,
+    Callback  = function(bool)
+        if bool then
+            _G.Basic = true 
+            while wait(0) and _G.Basic do
+                game.Players.LocalPlayer.PlayerGui.FrontGui.Frame.Name = "Frame1"
+
+local Blocks = game.Players.LocalPlayer.PlayerGui.FrontGui.Frame.Frame.ImageButton
+
+for _, child in ipairs(Blocks:GetChildren()) do
+child.ImageTransparency = 0.4
+end
+            end
+        else
+            _G.Basic = false
+        end
+    end
+}
+
+local section = tab:Section{
+    Name = "Story Skip",
+    Side = "Right"
+}
+local dropdown = section:Dropdown{
+    Name = "Story Skips",
+    --Default = "Option 1",
+    Content = {
+        "Start Skip",
+        "Thief Girl",
+        "Volcan Jake",
+        "Route 8 Skip",
+        "Kygore Skip",
+        "Grove Dreams",
+    },
+    Flag = "Kanto Cities",
+    Callback = function(option)
+        if option == "Start Skip" then
+            game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-106, 60, -60)
+        elseif option == "Thief Girl" then
+            game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-259, 65, -867)
+        elseif option == "Volcan Jake" then
+            game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-647, 118, -1058)
+        elseif option == "Groudon Outside" then
+            game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(361, 127, -1301)
+        elseif option == "Route 8 Skip" then
+            game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1331, 94, -1830)
+        elseif option == "Kygore Skip" then
+            game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1277, 119, -2327)
+        elseif option == "Grove Dreams" then
+            game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-486, 58, -404)
+        elseif option == "Fuchsia City" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4290.9267578125, -60.76499938964844, -1165.22802734375)
+        elseif option == "Mr.CinnaBar" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-5056.64208984375, 190.9810028076172, 1157.6109619140625)
+        elseif option == "Plateu Indigo" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(7143.958984375, 513.697998046875, -6823.662109375)
+        end
+    end
+}
+local label = section:Label("Must be in the city")
+local section = tab:Section{
+    Name = "Or be in the same Chunk!",
+    Side = "Right"
+}
+local dropdown = section:Dropdown{
+    Name = "PokeCenter Teleports",
+    --Default = "Option 1",
+    Content = {
+        "Cheshma Town",
+        "Silvent City",
+        "Brimber Broken",
+        "Lagoona Lake",
+        "Rosecove City",
+        "Anthian Broken",
+        "Aredia Broken",
+    },
+    Flag = "Kanto Cities",
+    Callback = function(option)
+        if option == "Cheshma Town" then
+            game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-81, 69, -653)
+        elseif option == "Silvent City" then
+            game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-259, 65, -867)
+        elseif option == "Brimber City" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-448.89801025390625, -90.6760025024414, 1576.489013671875)
+        elseif option == "Lagoona Lake" then
+            game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(312, 109, -1059)
+        elseif option == "Rosecove City" then
+            game:GetService'Players'.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-997, 118, -2213)
+        elseif option == "Aredia City" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2680.72705078125, -61, -1437.5999755859375)
+        elseif option == "Saffron City" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4333.52880859375, -68.9739990234375, -279.2070007324219)
+        elseif option == "Fuchsia City" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4290.9267578125, -60.76499938964844, -1165.22802734375)
+        elseif option == "Mr.CinnaBar" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-5056.64208984375, 190.9810028076172, 1157.6109619140625)
+        elseif option == "Plateu Indigo" then
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(7143.958984375, 513.697998046875, -6823.662109375)
+        end
+    end
+}
+
+--library:SaveConfig("config", true) -- universal config
+--library:SaveConfig("config") -- game specific config
+--library:DeleteConfig("config", true) -- universal config
+--library:DeleteConfig("config") -- game specific config
+--library:GetConfigs(true) -- return universal and game specific configs (table)
+--library:GetConfigs() -- return game specific configs (table)
+--library:LoadConfig("config", true) -- load universal config
+--library:LoadConfig("config") -- load game specific config
+
+local configs = main:Tab("Configuration")
+
+local themes = configs:Section{Name = "Theme", Side = "Left"}
+
+local themepickers = {}
+
+local themelist = themes:Dropdown{
+    Name = "Theme",
+    Default = library.currenttheme,
+    Content = library:GetThemes(),
+    Flag = "Theme Dropdown",
+    Callback = function(option)
+        if option then
+            library:SetTheme(option)
+
+            for option, picker in next, themepickers do
+                picker:Set(library.theme[option])
+            end
+        end
+    end
+}
+
+library:ConfigIgnore("Theme Dropdown")
+
+local namebox = themes:Box{
+    Name = "Custom Theme Name",
+    Placeholder = "Custom Theme",
+    Flag = "Custom Theme"
+}
+
+library:ConfigIgnore("Custom Theme")
+
+themes:Button{
+    Name = "Save Custom Theme",
+    Callback = function()
+        if library:SaveCustomTheme(library.flags["Custom Theme"]) then
+            themelist:Refresh(library:GetThemes())
+            themelist:Set(library.flags["Custom Theme"])
+            namebox:Set("")
+        end
+    end
+}
+
+local customtheme = configs:Section{Name = "Custom Theme", Side = "Right"}
+
+themepickers["Accent"] = customtheme:ColorPicker{
+    Name = "Accent",
+    Default = library.theme["Accent"],
+    Flag = "Accent",
+    Callback = function(color)
+        library:ChangeThemeOption("Accent", color)
+    end
+}
+
+library:ConfigIgnore("Accent")
+
+themepickers["Window Background"] = customtheme:ColorPicker{
+    Name = "Window Background",
+    Default = library.theme["Window Background"],
+    Flag = "Window Background",
+    Callback = function(color)
+        library:ChangeThemeOption("Window Background", color)
+    end
+}
+
+library:ConfigIgnore("Window Background")
+
+themepickers["Window Border"] = customtheme:ColorPicker{
+    Name = "Window Border",
+    Default = library.theme["Window Border"],
+    Flag = "Window Border",
+    Callback = function(color)
+        library:ChangeThemeOption("Window Border", color)
+    end
+}
+
+library:ConfigIgnore("Window Border")
+
+themepickers["Tab Background"] = customtheme:ColorPicker{
+    Name = "Tab Background",
+    Default = library.theme["Tab Background"],
+    Flag = "Tab Background",
+    Callback = function(color)
+        library:ChangeThemeOption("Tab Background", color)
+    end
+}
+
+library:ConfigIgnore("Tab Background")
+
+themepickers["Tab Border"] = customtheme:ColorPicker{
+    Name = "Tab Border",
+    Default = library.theme["Tab Border"],
+    Flag = "Tab Border",
+    Callback = function(color)
+        library:ChangeThemeOption("Tab Border", color)
+    end
+}
+
+library:ConfigIgnore("Tab Border")
+
+themepickers["Tab Toggle Background"] = customtheme:ColorPicker{
+    Name = "Tab Toggle Background",
+    Default = library.theme["Tab Toggle Background"],
+    Flag = "Tab Toggle Background",
+    Callback = function(color)
+        library:ChangeThemeOption("Tab Toggle Background", color)
+    end
+}
+
+library:ConfigIgnore("Tab Toggle Background")
+
+themepickers["Section Background"] = customtheme:ColorPicker{
+    Name = "Section Background",
+    Default = library.theme["Section Background"],
+    Flag = "Section Background",
+    Callback = function(color)
+        library:ChangeThemeOption("Section Background", color)
+    end
+}
+
+library:ConfigIgnore("Section Background")
+
+themepickers["Section Border"] = customtheme:ColorPicker{
+    Name = "Section Border",
+    Default = library.theme["Section Border"],
+    Flag = "Section Border",
+    Callback = function(color)
+        library:ChangeThemeOption("Section Border", color)
+    end
+}
+
+library:ConfigIgnore("Section Border")
+
+themepickers["Text"] = customtheme:ColorPicker{
+    Name = "Text",
+    Default = library.theme["Text"],
+    Flag = "Text",
+    Callback = function(color)
+        library:ChangeThemeOption("Text", color)
+    end
+}
+
+library:ConfigIgnore("Text")
+
+themepickers["Disabled Text"] = customtheme:ColorPicker{
+    Name = "Disabled Text",
+    Default = library.theme["Disabled Text"],
+    Flag = "Disabled Text",
+    Callback = function(color)
+        library:ChangeThemeOption("Disabled Text", color)
+    end
+}
+
+library:ConfigIgnore("Disabled Text")
+
+themepickers["Object Background"] = customtheme:ColorPicker{
+    Name = "Object Background",
+    Default = library.theme["Object Background"],
+    Flag = "Object Background",
+    Callback = function(color)
+        library:ChangeThemeOption("Object Background", color)
+    end
+}
+
+library:ConfigIgnore("Object Background")
+
+themepickers["Object Border"] = customtheme:ColorPicker{
+    Name = "Object Border",
+    Default = library.theme["Object Border"],
+    Flag = "Object Border",
+    Callback = function(color)
+        library:ChangeThemeOption("Object Border", color)
+    end
+}
+
+library:ConfigIgnore("Object Border")
+
+themepickers["Dropdown Option Background"] = customtheme:ColorPicker{
+    Name = "Dropdown Option Back",
+    Default = library.theme["Dropdown Option Background"],
+    Flag = "Dropdown Option Background",
+    Callback = function(color)
+        library:ChangeThemeOption("Dropdown Option Background", color)
+    end
+}
+
+library:ConfigIgnore("Dropdown Option Background")
+
+local configsection = configs:Section{Name = "Configs", Side = "Left"}
+
+local configlist = configsection:Dropdown{
+    Name = "Configs",
+    Content = library:GetConfigs(), -- GetConfigs(true) if you want universal configs
+    Flag = "Config Dropdown"
+}
+
+library:ConfigIgnore("Config Dropdown")
+
+local loadconfig = configsection:Button{
+    Name = "Load Config",
+    Callback = function()
+        library:LoadConfig(library.flags["Config Dropdown"]) -- LoadConfig(library.flags["Config Dropdown"], true)  if you want universal configs
+    end
+}
+
+local delconfig = configsection:Button{
+    Name = "Delete Config",
+    Callback = function()
+        library:DeleteConfig(library.flags["Config Dropdown"]) -- DeleteConfig(library.flags["Config Dropdown"], true)  if you want universal configs
+        configlist:Refresh(library:GetConfigs())
+    end
+}
+
+
+local configbox = configsection:Box{
+    Name = "Config Name",
+    Placeholder = "Config Name",
+    Flag = "Config Name"
+}
+
+library:ConfigIgnore("Config Name")
+
+local save = configsection:Button{
+    Name = "Save Config",
+    Callback = function()
+        library:SaveConfig(library.flags["Config Dropdown"] or library.flags["Config Name"]) -- SaveConfig(library.flags["Config Name"], true) if you want universal configs
+        configlist:Refresh(library:GetConfigs())
+    end
+}
+
+local keybindsection = configs:Section{Name = "UI Toggle Keybind", Side = "Left"}
+
+keybindsection:Keybind{
+    Name = "UI Toggle",
+    Flag = "UI Toggle",
+    Default = Enum.KeyCode.RightShift,
+    Blacklist = {Enum.UserInputType.MouseButton1, Enum.UserInputType.MouseButton2, Enum.UserInputType.MouseButton3},
+    Callback = function(_, fromsetting)
+        if not fromsetting then
+            library:Close()
+        end
+    end
+}
+
+
+local label = keybindsection:Label("Scroll on Custom Themes")
+local label = keybindsection:Label("For See Extra & Credits")
+
+local CreditsSection = configs:Section{Name = "Extra & Credits", Side = "Right"}
+
+CreditsSection:Button{
+    Name = "Infinite Yield",
+	Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+  	end    
+}
+
+CreditsSection:Button{
+    Name = "FullBright",
+	Callback = function()
+        if brightLoop then
+            brightLoop:Disconnect()
+        end
+        local function brightFunc()
+            game:GetService("Lighting").Brightness = 2
+            game:GetService("Lighting").ClockTime = 14
+            game:GetService("Lighting").FogEnd = 100000
+            game:GetService("Lighting").GlobalShadows = false
+            game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+        end
+
+        brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+  	end    
+}
+
+local label = CreditsSection:Label("Credits: PinkieScripter")
+local label = CreditsSection:Label("Join the Discord")
+CreditsSection:Button{
+    Name = "Click to Copy",
+Callback = function()
+    setclipboard("https://discord.gg/TWtRkMjpEu")
+    toclipboard("https://discord.gg/TWtRkMjpEu")
+  end  
+}
