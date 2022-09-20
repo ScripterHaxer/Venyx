@@ -37,7 +37,7 @@ local Library = {
 			Secondary = Color3.fromRGB(53, 53, 53),
 			Tertiary = Color3.fromRGB(255, 128, 0),
 
-			StrongText = Color3.fromHSV(43, 255, 0),		
+			StrongText = Color3.fromHSV(0, 0, 1),		
 			WeakText = Color3.fromHSV(0, 0, 172/255)
 		},
 		Shego = {
