@@ -894,10 +894,8 @@ function Library:create(options)
 	})
 
 	rawset(mt, "creditsContainer", creditsTab.container)
-
-	creditsTab:credit{Name = "ch", Description = "Mew Hub Developer", Discord = "ch#0069", V3rmillion = ""}
-	creditsTab:credit{Name = "Gideon", Description = "Mew Hub Developer", Discord = "Gideon#1228", V3rmillion = ""}
-	creditsTab:credit{Name = "afct", Description = "Mew Hub Developer", Discord = "تؤثر#9999", V3rmillion = ""}
+	creditsTab:credit{Name = "Gideon", Description = "ReeeHub Developer", Discord = "Gideon#1228", V3rmillion = "I Hate You"}
+	creditsTab:credit{Name = "Limpan", Description = "ReeeHub Developer", Discord = "Limpan#0666", V3rmillion = ""}
 	
 	return mt
 end
