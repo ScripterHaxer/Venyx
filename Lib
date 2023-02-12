@@ -8,7 +8,7 @@ local HTTPService = game:GetService("HttpService")
 
 local Library = {
 	Themes = {
-		ReeeHub = {
+		Amanda = {
 			Main = Color3.fromRGB(30, 30, 35),
 			Secondary = Color3.fromRGB(50, 50, 55),
 			Tertiary = Color3.fromRGB(255, 0, 0),
