@@ -8,42 +8,42 @@ local HTTPService = game:GetService("HttpService")
 
 local Library = {
 	Themes = {
-		Amanda = {
+		Mew = {
+			Main = Color3.fromRGB(50, 52, 55),
+			Secondary = Color3.fromRGB(80, 82, 85),
+			Tertiary = Color3.fromRGB(255, 192, 203),
+
+			StrongText = Color3.fromHSV(0, 0, 1),		
+			WeakText = Color3.fromHSV(0, 0, 172/255)
+		},
+		Serika = {
+			Main = Color3.fromRGB(50, 52, 55),
+			Secondary = Color3.fromRGB(80, 82, 85),
+			Tertiary = Color3.fromRGB(226, 183, 20),
+
+			StrongText = Color3.fromHSV(0, 0, 1),		
+			WeakText = Color3.fromHSV(0, 0, 172/255)
+		},
+		Dark = {
 			Main = Color3.fromRGB(30, 30, 35),
 			Secondary = Color3.fromRGB(50, 50, 55),
-			Tertiary = Color3.fromRGB(255, 0, 0),
+			Tertiary = Color3.fromRGB(70, 130, 180),
 
 			StrongText = Color3.fromHSV(0, 0, 1),		
 			WeakText = Color3.fromHSV(0, 0, 172/255)
 		},
-		LimpanSecret = {
-			Main = Color3.fromRGB(14, 79, 164),
-			Secondary = Color3.fromRGB(13, 101, 216),
-			Tertiary = Color3.fromRGB(255, 0, 0),
+		Rust = {
+			Main = Color3.fromRGB(37, 35, 33),
+			Secondary = Color3.fromRGB(65, 63, 63),
+			Tertiary = Color3.fromRGB(237, 94, 38),
 
 			StrongText = Color3.fromHSV(0, 0, 1),		
 			WeakText = Color3.fromHSV(0, 0, 172/255)
 		},
-		Sweden = {
-			Main = Color3.fromRGB(0, 68, 255),
-			Secondary = Color3.fromRGB(19, 70, 210),
-			Tertiary = Color3.fromRGB(239, 255, 0),
-
-			StrongText = Color3.fromHSV(0, 0, 1),		
-			WeakText = Color3.fromHSV(0, 0, 172/255)
-		},
-		PornHub = {
-			Main = Color3.fromRGB(41, 41, 41),
-			Secondary = Color3.fromRGB(53, 53, 53),
-			Tertiary = Color3.fromRGB(255, 128, 0),
-
-			StrongText = Color3.fromHSV(0, 0, 1),		
-			WeakText = Color3.fromHSV(0, 0, 172/255)
-		},
-		Shego = {
-			Main = Color3.fromRGB(0, 0, 0),
-			Secondary = Color3.fromRGB(9, 8, 8),
-			Tertiary = Color3.fromRGB(9, 255, 0),
+		Aqua = {
+			Main = Color3.fromRGB(19, 21, 21),
+			Secondary = Color3.fromRGB(65, 63, 63),
+			Tertiary = Color3.fromRGB(51, 153, 137),
 
 			StrongText = Color3.fromHSV(0, 0, 1),        
 			WeakText = Color3.fromHSV(0, 0, 172/255)
@@ -665,7 +665,7 @@ function Library:create(options)
 		BackgroundTransparency = 1,
 		Position = UDim2.new(0, 5, 0.5, 0),
 		Size = UDim2.new(0, 15, 0, 15),
-		Image = "", ----    change
+		Image = "http://www.roblox.com/asset/?id=10513295232", ----    change
 		Theme = {ImageColor3 = "StrongText"}
 	})
 
@@ -894,8 +894,10 @@ function Library:create(options)
 	})
 
 	rawset(mt, "creditsContainer", creditsTab.container)
-	creditsTab:credit{Name = "Gideon", Description = "ReeeHub Developer", Discord = "Gideon#1228", V3rmillion = "I Hate You"}
-	creditsTab:credit{Name = "Limpan", Description = "ReeeHub Developer", Discord = "Limpan#0666", V3rmillion = ""}
+
+	creditsTab:credit{Name = "ch", Description = "Mew Hub Developer", Discord = "ch#0069", V3rmillion = ""}
+	creditsTab:credit{Name = "Gideon", Description = "Mew Hub Developer", Discord = "Gideon#1228", V3rmillion = ""}
+	creditsTab:credit{Name = "afct", Description = "Mew Hub Developer", Discord = "تؤثر#9999", V3rmillion = ""}
 	
 	return mt
 end
