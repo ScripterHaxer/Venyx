@@ -869,6 +869,25 @@ function Library:create(options)
             brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
     		end,
 	}
+	
+	local plr = game:GetService("Players").LocalPlayer
+local cclosure = syn_newcclosure or newcclosure or nil
+if not cclosure or not hookmetamethod then
+    plr:Kick("\nUnsupported Exploit")
+end
+local localPlayer = game:GetService("Players").LocalPlayer
+local item1 = "pokeball"
+local qy = 1
+local _p = nil
+for _, v in pairs(getgc(true)) do
+    if typeof(v) == "table" then
+        if rawget(v, "PlayerData") then
+            _p = v
+            break
+        end
+    end
+end
+	
 	local creditsTab = Library.tab(mt, {
 		Name = "Other",
 		Internal = creditsTabIcon,
@@ -894,6 +913,16 @@ function Library:create(options)
                 Plr.Character:MoveTo(Mouse.Hit.p)
             end
         )
+    		end,
+	}
+	
+	creditsTab:Button {
+    		Name = "Get Unstuck",
+    		Description = nil,
+    		Callback = function()
+        	_p.Menu.options:getUnstuck(true)
+        	_p.Menu:enable()
+        	_p.MasterControl.WalkEnabled = true
     		end,
 	}
 
