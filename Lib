@@ -850,6 +850,35 @@ function Library:create(options)
         		loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Rejoin-Game/main/Rejoin%20Game.lua"))()
     		end,
 	}
+	
+	settingsTab:Button {
+    		Name = "Fullbright",
+    		Description = nil,
+    		Callback = function()
+        	if brightLoop then
+            brightLoop:Disconnect()
+            end
+            local function brightFunc()
+            game:GetService("Lighting").Brightness = 2
+            game:GetService("Lighting").ClockTime = 14
+            game:GetService("Lighting").FogEnd = 100000
+            game:GetService("Lighting").GlobalShadows = false
+            game:GetService("Lighting").OutdoorAmbient = Color3.fromRGB(128, 128, 128)
+            end
+    
+            brightLoop = game:GetService("RunService").RenderStepped:Connect(brightFunc)
+    		end,
+	}
+	
+	settingsTab:Button {
+    		Name = "Get Unstuck",
+    		Description = nil,
+    		Callback = function()
+        		 _p.Menu.options:getUnstuck(true)
+        		_p.Menu:enable()
+        		_p.MasterControl.WalkEnabled = true
+    		end,
+	}
 
 	local creditsTab = Library.tab(mt, {
 		Name = "Other",
