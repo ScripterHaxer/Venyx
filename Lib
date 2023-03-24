@@ -843,24 +843,12 @@ function Library:create(options)
 			Library:show(self.Toggled)
 		end,
 	}
-
-	settingsTab:toggle{
-		Name = "Lock Dragging",
-		Description = "Makes sure you can't drag the UI outside of the window.",
-		StartingState = true,
-		Callback = function(state)
-			Library.LockDragging = state
-		end,
-	}
-
-	settingsTab:slider{
-		Name = "UI Drag Speed",
-		Description = "How smooth the dragging looks.",
-		Max = 20,
-		Default = 14,
-		Callback = function(value)
-			Library.DragSpeed = (20 - value)/100
-		end,
+	settingsTab:Button {
+    		Name = "Rejoin Server",
+    		Description = nil,
+    		Callback = function()
+        		loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Rejoin-Game/main/Rejoin%20Game.lua"))()
+    		end,
 	}
 
 	local creditsTab = Library.tab(mt, {
