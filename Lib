@@ -8,8 +8,8 @@ local HTTPService = game:GetService("HttpService")
 
 local Library = {
 	Themes = {
-		Mew = {
-			Main = Color3.fromRGB(50, 52, 55),
+		Amanda = {
+			Main = Color3.fromRGB(93, 63, 211),
 			Secondary = Color3.fromRGB(80, 82, 85),
 			Tertiary = Color3.fromRGB(255, 192, 203),
 
