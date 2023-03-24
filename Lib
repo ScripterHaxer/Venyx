@@ -925,7 +925,34 @@ end
         	_p.MasterControl.WalkEnabled = true
     		end,
 	}
-
+	
+	getgenv().NoClip = false
+	
+	--Noclip loop
+game:GetService("RunService").Stepped:Connect(function()
+    if getgenv().NoClip == true then
+        for Index,Part in pairs(PlayerParts) do
+            Part.CanCollide = false
+        end
+    end
+ 
+    if InfRepel == true and _p.RegionData.currentChunk.regionData then 
+        if _p.RegionData.currentChunk.regionData.GrassEncounterChance ~= -1 then
+            __AutoFinder.OldEncounterChance = _p.RegionData.currentChunk.regionData.GrassEncounterChance
+        end
+        _p.RegionData.currentChunk.regionData.GrassEncounterChance = -1
+    end
+end)
+	
+	creditsTab:Toggle {
+        Name = "Toggle Noclip",
+        StartingState = false,
+        Description = "Toggles Noclip",
+        Callback = function(Value)
+	getgenv().NoClip = Value
+        end
+    }
+	
 	creditsTab:credit{Name = "Gideon", Description = "I'm bored", Discord = "Gideon#1228", V3rmillion = ""}
 	
 	return mt
