@@ -916,15 +916,6 @@ end
     		end,
 	}
 	
-	creditsTab:Button {
-    		Name = "Get Unstuck",
-    		Description = nil,
-    		Callback = function()
-        	_p.Menu.options:getUnstuck(true)
-        	_p.Menu:enable()
-        	_p.MasterControl.WalkEnabled = true
-    		end,
-	}
 	
 	creditsTab:Button {
     		Name = "Infinite Yield",
