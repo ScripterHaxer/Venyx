@@ -934,6 +934,25 @@ end
     		end,
 	}
 	
+	creditsTab:Button {
+    		Name = "Mine X-Ray",
+    		Description = "Gives X-ray for the Lagoona Lake boat when you mine stuff",
+    		Callback = function()
+        	while true do
+   
+game.Players.LocalPlayer.PlayerGui.FrontGui.Frame.Name = "Frame1"
+
+local Blocks = game.Players.LocalPlayer.PlayerGui.FrontGui.Frame.Frame.ImageButton
+
+for _, child in ipairs(Blocks:GetChildren()) do
+child.ImageTransparency = 0.4
+end
+
+wait()
+end
+    		end,
+	}
+	
 	creditsTab:credit{Name = "Gideon", Description = "I'm bored", Discord = "Gideon#1228", V3rmillion = ""}
 	
 	return mt
