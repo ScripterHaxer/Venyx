@@ -259,7 +259,6 @@ function Library:CreateWindow(title)
     discord.BorderColor3 = themes.image
     discord.Position = UDim2.new(0, 527, 0, 3)
     discord.Size = UDim2.new(0, 20, 0, 20)
-    discord.Visible = false
     discord.Image = "rbxassetid://12058969086"
 
     discord.MouseLeave:Connect(function()
