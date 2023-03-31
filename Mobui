@@ -183,6 +183,7 @@ function Library:CreateWindow(title)
     local UICorner_2 = Instance.new("UICorner")
     local Logo = Instance.new("ImageLabel")
     local Title = Instance.new("TextLabel")
+    local discord = Instance.new("ImageButton")
     local UICorner_3 = Instance.new("UICorner")
     local tab = Instance.new("ScrollingFrame")
     local UIListLayout = Instance.new("UIListLayout")
@@ -235,7 +236,7 @@ function Library:CreateWindow(title)
     Logo.BorderSizePixel = 0
     Logo.Position = UDim2.new(0, 3, 0, 3)
     Logo.Size = UDim2.new(0, 20, 0, 20)
-    Logo.Image = "rbxassetid://12551028372"
+    Logo.Image = "rbxassetid://168602211"
     Logo.ImageColor3 = Color3.fromRGB(255, 255, 255)
 
     Title.Name = "Title"
@@ -250,6 +251,37 @@ function Library:CreateWindow(title)
     Title.TextColor3 = themes.text
     Title.TextSize = 13.000
     Title.TextXAlignment = Enum.TextXAlignment.Center
+
+    discord.Name = "discord"
+    discord.Parent = Main
+    discord.BackgroundColor3 = themes.background
+    discord.BorderSizePixel = 0
+    discord.BorderColor3 = themes.image
+    discord.Position = UDim2.new(0, 527, 0, 3)
+    discord.Size = UDim2.new(0, 20, 0, 20)
+    discord.Visible = false
+    discord.Image = "rbxassetid://12058969086"
+
+    discord.MouseLeave:Connect(function()
+        utility:Tween(discord, {BorderSizePixel = 0}, 0.15)
+        utility:Tween(discord, {BackgroundColor3 = themes.background}, 0.15)
+    end)
+    
+    discord.MouseEnter:Connect(function()
+        utility:Tween(discord, {BorderSizePixel = 1}, 0.15)
+        utility:Tween(discord, {BackgroundColor3 = Color3.fromRGB(80, 80, 80)}, 0.15)
+    end)
+
+    discord.MouseButton1Click:Connect(function()
+        setclipboard("https://discord.gg/aYJENxywzv")
+        wait(.1)
+        game:GetService("StarterGui"):SetCore("SendNotification",{
+            Title = "Discord",
+            Text = "Discord copied on your clipboard",
+            Button1 = "Okay",
+            Duration = 20
+        })
+    end)
 
     UICorner_3.CornerRadius = UDim.new(0, 4)
     UICorner_3.Parent = discord
