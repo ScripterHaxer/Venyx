@@ -235,7 +235,7 @@ function Library:CreateWindow(title)
     Logo.BorderSizePixel = 0
     Logo.Position = UDim2.new(0, 3, 0, 3)
     Logo.Size = UDim2.new(0, 20, 0, 20)
-    Logo.Image = "rbxassetid://12021503727"
+    Logo.Image = "rbxassetid://12551028372"
     Logo.ImageColor3 = Color3.fromRGB(255, 255, 255)
 
     Title.Name = "Title"
