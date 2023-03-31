@@ -251,6 +251,9 @@ function Library:CreateWindow(title)
     Title.TextSize = 13.000
     Title.TextXAlignment = Enum.TextXAlignment.Center
 
+    UICorner_3.CornerRadius = UDim.new(0, 4)
+    UICorner_3.Parent = discord
+
     tab.Name = "tab"
     tab.Parent = Main
     tab.Active = true
@@ -384,7 +387,7 @@ function Library:CreateWindow(title)
         Frame1.AutoButtonColor = false
         Frame1.Font = Enum.Font.SourceSans
         Frame1.TextSize = 12.000
-        Frame1.Text = "*"..title.."*"
+        Frame1.Text = "  *  "..title.."  *  "
         Frame1.TextColor3 = themes.text
 
         utility:Tween(Frame1, {Size = UDim2.new(0, 25 + Frame1.TextBounds.X, 0, 18)}, 0.15)
@@ -824,7 +827,7 @@ function Library:CreateWindow(title)
                     TextButton.Font = Enum.Font.SourceSans
                     TextButton.AutoButtonColor = false
                     TextButton.TextSize = 12.000
-                    TextButton.Text = '  â€¢ '..v
+                    TextButton.Text = '  * '..v
                     TextButton.TextXAlignment = Enum.TextXAlignment.Left
                     TextButton.TextColor3 = themes.text
 
@@ -889,7 +892,7 @@ function Library:CreateWindow(title)
                         TextButton.Font = Enum.Font.SourceSans
                         TextButton.AutoButtonColor = false
                         TextButton.TextSize = 12.000
-                        TextButton.Text = '  â€¢ '..v
+                        TextButton.Text = '  * '..v
                         TextButton.TextXAlignment = Enum.TextXAlignment.Left
                         TextButton.TextColor3 = themes.text
 
@@ -1624,7 +1627,7 @@ function Library:CreateWindow(title)
                     TextButton.Font = Enum.Font.SourceSans
                     TextButton.AutoButtonColor = false
                     TextButton.TextSize = 12.000
-                    TextButton.Text = '  â€¢ '..v
+                    TextButton.Text = '  * '..v
                     TextButton.TextXAlignment = Enum.TextXAlignment.Left
                     TextButton.TextColor3 = themes.text
 
@@ -1689,7 +1692,7 @@ function Library:CreateWindow(title)
                         TextButton.Font = Enum.Font.SourceSans
                         TextButton.AutoButtonColor = false
                         TextButton.TextSize = 12.000
-                        TextButton.Text = '  â€¢ '..v
+                        TextButton.Text = '  * '..v
                         TextButton.TextXAlignment = Enum.TextXAlignment.Left
                         TextButton.TextColor3 = themes.text
 
