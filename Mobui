@@ -273,7 +273,7 @@ function Library:CreateWindow(title)
     end)
 
     discord.MouseButton1Click:Connect(function()
-        setclipboard("https://discord.gg/aYJENxywzv")
+        setclipboard("")
         wait(.1)
         game:GetService("StarterGui"):SetCore("SendNotification",{
             Title = "Discord",
