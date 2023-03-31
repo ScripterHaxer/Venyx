@@ -384,7 +384,6 @@ function Library:CreateWindow(title)
         Frame1.AutoButtonColor = false
         Frame1.Font = Enum.Font.SourceSans
         Frame1.TextSize = 12.000
-        Frame1.Text = "  â€¢  "..title.."  â€¢  "
         Frame1.TextColor3 = themes.text
 
         utility:Tween(Frame1, {Size = UDim2.new(0, 25 + Frame1.TextBounds.X, 0, 18)}, 0.15)
