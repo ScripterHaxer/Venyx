@@ -251,9 +251,6 @@ function Library:CreateWindow(title)
     Title.TextSize = 13.000
     Title.TextXAlignment = Enum.TextXAlignment.Center
 
-    UICorner_3.CornerRadius = UDim.new(0, 4)
-    UICorner_3.Parent = discord
-
     tab.Name = "tab"
     tab.Parent = Main
     tab.Active = true
